@@ -6,10 +6,13 @@ import sys.FileSystem;
 import sys.io.File as SysFile;
 #end
 import openfl.display.BitmapData;
+import openfl.media.Sound;
+import lime.media.AudioBuffer;
 import openfl.utils.Assets;
 import haxe.io.Bytes;
 import openfl.utils.AssetType;
 import openfl.utils.ByteArray;
+import lime.utils.Assets as LimeAssets;
 
 using StringTools;
 
@@ -20,14 +23,31 @@ class File
 
 	public static function getAssetBytes(id:String, ?lib:String):Bytes
 	{
-		#if web
-		return null;
-		#end
 		var assetsPath:String = getAssetPath(id, lib);
 		if (Assets.exists(assetsPath))
 		{
-			var assetPath:String = Assets.getPath(assetsPath);
-			return ByteArray.fromFile(assetPath);
+			#if web
+			var assetList:Array<String> = ["BINARY", "IMAGE", "TEXT"];
+			for (assetType in assetList)
+				try
+				{
+					switch (assetType)
+					{
+						case "BINARY":
+							return Assets.getBytes(assetsPath);
+						case "IMAGE":
+							var daBitmapData:BitmapData = Assets.getBitmapData(assetsPath);
+							var daImage:Image = daBitmapData.image;
+							return daImage.encode(PNG);
+						case "TEXT":
+							return Bytes.ofString(Assets.getText(assetsPath));
+					}
+				}
+				catch (e:Dynamic) {};
+			return null;
+			#else
+			return ByteArray.fromFile(assetsPath);
+			#end
 		}
 		#if (sys && !mobile)
 		else if (FileSystem.exists(assetsPath))

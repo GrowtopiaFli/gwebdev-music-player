@@ -104,7 +104,7 @@ class PlayState extends FlxState
 		particles = new ParticleSystem();
 		particles.cameras = [particleCam];
 		add(particles);
-		
+
 		var txtData:String = File.getAssetBytes('data/menudata.cfg').toString();
 		var conf:ConfigFile = new ConfigFile();
 		conf.read(txtData);
@@ -146,7 +146,7 @@ class PlayState extends FlxState
 			// tSprite.loadGraphic(BitmapData.fromImage(Image.fromBytes(File.getAssetBytes(iniData[iniArrShit[i]]["icon"]))));
 			// i have a new idea lol
 			var iconPath:String = iniData[iniArrShit[i]]["icon"];
-			var forAssets:String = 'assets/' + iniData;
+			var forAssets:String = 'assets/' + iconPath;
 			if (Assets.exists(forAssets))
 				tSprite.loadGraphic(forAssets);
 			else
