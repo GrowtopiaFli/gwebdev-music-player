@@ -6,6 +6,7 @@ import sys.FileSystem;
 import sys.io.File as SysFile;
 #end
 import openfl.display.BitmapData;
+import lime.graphics.Image;
 import openfl.media.Sound;
 import lime.media.AudioBuffer;
 import openfl.utils.Assets;
