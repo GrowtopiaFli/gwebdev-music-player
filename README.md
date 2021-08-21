@@ -4,7 +4,8 @@ Full Of The Music I Made \
 You Can Even Modify It To Load Assets Externally Without Compile Because Im POG \
 You Can Modify The .cfg File \
 And Add Stuff In Images And Music (And It Will Load Magically Without Compiling) \
-But If You Do It This Way, It Might Lag.
+But If You Do It This Way, It Might Lag. \
+HTML5 Version: https://growtopiafli.github.io/HtmlGWebMusicPlayer/
 * Timestamp Change - Mouse
 * Toggle Fullscreen - F
 * Navigate - Left/Right
